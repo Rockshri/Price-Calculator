@@ -1,0 +1,136 @@
+-- Referral fee brackets per Amazon India fee schedule.
+-- Lookup: listingPrice > min_price AND listingPrice <= max_price
+-- Use 10000000 instead of NULL for open-ended upper bounds.
+
+TRUNCATE referral_fees RESTART IDENTITY;
+
+INSERT INTO referral_fees (main_category, category_name, min_price, max_price, rate) VALUES
+-- Fashion & Accessories (Handbags, Backpacks, Wallets, Luggage)
+('Fashion & Accessories', 'Handbags',                        0,    1000, 0.0000),
+('Fashion & Accessories', 'Handbags',                     1000, 10000000, 0.2000),
+('Fashion & Accessories', 'Backpacks',                       0,    1000, 0.0000),
+('Fashion & Accessories', 'Backpacks',                    1000, 10000000, 0.2000),
+('Fashion & Accessories', 'Wallets',                         0,    1000, 0.0000),
+('Fashion & Accessories', 'Wallets',                      1000, 10000000, 0.2000),
+('Fashion & Accessories', 'Luggage – Suitcase and Trolleys', 0,    1000, 0.0000),
+('Fashion & Accessories', 'Luggage – Suitcase and Trolleys',1000, 10000000, 0.2000),
+('Fashion & Accessories', 'Luggage – Travel Accessories',    0,    1000, 0.0000),
+('Fashion & Accessories', 'Luggage – Travel Accessories', 1000, 10000000, 0.2000),
+-- Watches
+('Fashion & Accessories', 'Watches',                         0,    500, 0.1300),
+('Fashion & Accessories', 'Watches',                       500, 10000000, 0.1500),
+-- Eyewear
+('Fashion & Accessories', 'Eyewear – Sunglasses, Frames and Zero Power Eye Glasses',
+                                                              0, 10000000, 0.1500),
+-- Apparel (17% flat for most)
+('Apparel', 'Apparel – Women''s Innerwear and Lingerie',      0, 10000000, 0.1700),
+('Apparel', 'Apparel – Men''s T-Shirts (except Tank Tops and Full Sleeve Tops)',
+                                                              0, 10000000, 0.1700),
+('Apparel', 'Apparel – Sarees and Dress Materials',           0, 10000000, 0.1700),
+('Apparel', 'Apparel – Ethnic Wear',                         0, 10000000, 0.1700),
+('Apparel', 'Apparel – Dress',                               0, 10000000, 0.1700),
+('Apparel', 'Apparel – Shirts',                              0, 10000000, 0.1700),
+('Apparel', 'Apparel – Other products',                      0, 10000000, 0.1700),
+('Apparel', 'Apparel – Accessories',                         0, 10000000, 0.1700),
+-- Footwear
+('Footwear', 'Shoes',                                        0,     500, 0.1000),
+('Footwear', 'Shoes',                                      500, 10000000, 0.1700),
+('Footwear', 'Flip Flops',                                   0,     500, 0.1000),
+('Footwear', 'Flip Flops',                                 500, 10000000, 0.1700),
+('Footwear', 'Kids Shoes',                                   0,     500, 0.1000),
+('Footwear', 'Kids Shoes',                                 500, 10000000, 0.1700),
+('Footwear', 'Sports – Footwear',                            0,     500, 0.1000),
+('Footwear', 'Sports – Footwear',                          500, 10000000, 0.1700),
+-- Jewellery
+('Jewellery', 'Fashion Jewellery',                           0,     250, 0.1400),
+('Jewellery', 'Fashion Jewellery',                         250, 10000000, 0.1700),
+('Jewellery', 'Silver Jewellery',                            0, 10000000, 0.1700),
+('Jewellery', 'Fine Jewellery – Studded',                    0, 10000000, 0.1700),
+('Jewellery', 'Fine Jewellery – Unstudded and Solitaire',    0, 10000000, 0.1700),
+-- Home & Kitchen
+('Home & Kitchen', 'Cookware, Tableware and Dinnerware',     0, 10000000, 0.1500),
+('Home & Kitchen', 'Home Decor Products',                    0, 10000000, 0.1500),
+('Home & Kitchen', 'Bedsheets, Blankets and Covers',         0, 10000000, 0.1500),
+('Home & Kitchen', 'Cushion Covers',                         0, 10000000, 0.1500),
+('Home & Kitchen', 'Wall Art',                               0, 10000000, 0.1500),
+('Home & Kitchen', 'Home Fragrance and Candles',             0, 10000000, 0.1500),
+('Home & Kitchen', 'Rugs and Doormats',                      0, 10000000, 0.1500),
+('Home & Kitchen', 'Kitchen Tools and Supplies – Choppers, Knives, Bakeware and Accessories',
+                                                              0, 10000000, 0.1500),
+('Home & Kitchen', 'Home Furnishing (Excluding Curtain and Curtain Accessories)',
+                                                              0, 10000000, 0.1500),
+('Home & Kitchen', 'Curtains and Curtain Accessories',       0, 10000000, 0.1500),
+('Home & Kitchen', 'Clocks',                                 0, 10000000, 0.1500),
+-- Beauty
+('Beauty', 'Beauty – Haircare, Bath and Shower',             0, 10000000, 0.1400),
+('Beauty', 'Beauty – Make-up',                               0, 10000000, 0.1400),
+('Beauty', 'Beauty – Fragrance',                             0, 10000000, 0.1400),
+('Beauty', 'Luxury Beauty',                                  0, 10000000, 0.1400),
+('Beauty', 'Face Wash',                                      0, 10000000, 0.1400),
+('Beauty', 'Moisturiser Cream',                              0, 10000000, 0.1400),
+('Beauty', 'Sunscreen',                                      0, 10000000, 0.1400),
+('Beauty', 'Deodorants',                                     0, 10000000, 0.1400),
+('Beauty', 'Beauty – Other products',                        0, 10000000, 0.1400),
+-- Electronics
+('Electronics', 'Mobile Phones',                             0, 10000000, 0.0400),
+('Electronics', 'Tablets',                                   0, 10000000, 0.0500),
+('Electronics', 'Laptops',                                   0, 10000000, 0.0500),
+('Electronics', 'Television',                                0, 10000000, 0.0500),
+('Electronics', 'Speakers',                                  0, 10000000, 0.0600),
+('Electronics', 'Headsets, Headphones and Earphones',        0, 10000000, 0.0600),
+('Electronics', 'Smart Watches and Accessories',             0, 10000000, 0.0600),
+('Electronics', 'Power Banks and Chargers',                  0, 10000000, 0.0600),
+('Electronics', 'Cases, Covers and Skins, and Screen Guards',0, 10000000, 0.1500),
+('Electronics', 'Camera and Camcorder',                      0, 10000000, 0.0500),
+('Electronics', 'Camera Accessories',                        0, 10000000, 0.1500),
+('Electronics', 'Electronic Devices (Excluding TV, Camera and Camcorder, Camera Lenses and Accessories, GPS Devices and Speakers)',
+                                                              0, 10000000, 0.0600),
+('Electronics', 'Accessories – Electronics, PC and Wireless',0, 10000000, 0.1500),
+-- Toys
+('Toys', 'Toys – Games and Puzzles, Boards Games, Adult Games and Building Sets',
+                                                              0, 10000000, 0.1500),
+('Toys', 'Toys – Infant and Pre-school Toys (Electronic and Non-Electronic)',
+                                                              0, 10000000, 0.1500),
+('Toys', 'Toys – Plush Toys, Action Figures and Dolls',      0, 10000000, 0.1500),
+('Toys', 'Toys – Other products',                            0, 10000000, 0.1500),
+('Toys', 'Toys – Drones',                                    0, 10000000, 0.1500),
+-- Grocery
+('Grocery', 'Grocery and Gourmet – Other products',          0, 10000000, 0.0600),
+('Grocery', 'Grocery – Dried Fruits and Nuts',               0, 10000000, 0.0600),
+('Grocery', 'Grocery – Hampers and gifting',                 0, 10000000, 0.0600),
+('Grocery', 'Grocery and Gourmet – Beverages',               0, 10000000, 0.0600),
+-- Sports & Fitness
+('Sports & Fitness', 'Gym Equipment',                        0, 10000000, 0.1500),
+('Sports & Fitness', 'Gym Weights',                          0, 10000000, 0.1500),
+('Sports & Fitness', 'Bicycles',                             0, 10000000, 0.1000),
+('Sports & Fitness', 'Sports – Cricket and Badminton Equipments, Tennis, Table Tennis, Squash, Football, Volleyball, Basketball, Throwball and Swimming',
+                                                              0, 10000000, 0.1500),
+('Sports & Fitness', 'Sports – Other products',              0, 10000000, 0.1500),
+-- Health
+('Health', 'Health and Household – Vitamins and Mineral Health Supplements',
+                                                              0, 10000000, 0.1500),
+('Health', 'Health and Household – Other products',          0, 10000000, 0.1500),
+('Health', 'Health and Household – Household Cleaning, Laundry, Air Fresheners, Personal Hygiene (Hand Wash)',
+                                                              0, 10000000, 0.1500),
+-- Baby
+('Baby', 'Baby – Other products',                            0, 10000000, 0.1500),
+('Baby', 'Baby – Diapers',                                   0, 10000000, 0.1500),
+('Baby', 'Baby Strollers',                                   0, 10000000, 0.1500),
+-- Furniture
+('Furniture', 'Large Furniture – Sofa, Beds, Wardrobes, Recliners, Living & Dining room chairs and tables',
+                                                              0, 10000000, 0.1000),
+('Furniture', 'Office Furniture – Study Table, Office and Gaming Chairs',
+                                                              0, 10000000, 0.1000),
+('Furniture', 'Mattresses',                                  0, 10000000, 0.1000),
+('Furniture', 'Bean Bags and Inflatables',                   0, 10000000, 0.1000),
+-- Pet
+('Pet', 'Pet Accessories, including Apparel, Collar, Leash and Harness',
+                                                              0, 10000000, 0.1500),
+('Pet', 'Pet Foods',                                         0, 10000000, 0.0600),
+('Pet', 'Pet – Other products',                              0, 10000000, 0.1500),
+-- Automotive
+('Automotive', 'Automotive Accessories – Floor Mats, Seat, Car and Bike Covers',
+                                                              0, 10000000, 0.1500),
+('Automotive', 'Automotive – Other products',                0, 10000000, 0.1500),
+-- Books & Media
+('Books & Media', 'Books',                                   0, 10000000, 0.0500);
